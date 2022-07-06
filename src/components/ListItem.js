@@ -4,14 +4,13 @@ import './ListItem.css'
 const ListItem = ({ pokemon, onPokemonClick }) => {
 
     const handleClick = () => {
-      onPokemonClick(pokemon.url)
+      onPokemonClick(pokemon)
     }
 
   return (
     <div >
-      <div onClick={handleClick}><img src={pokemon.sprites.front_default}></img>
-        <p></p>
-        {pokemon.name}
+      <div><img onClick={handleClick} src={pokemon.sprites.front_default} />
+        <p>{pokemon.name}</p>
       </div>
     </div>
     );

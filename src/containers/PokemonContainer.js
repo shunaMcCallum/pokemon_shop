@@ -88,18 +88,16 @@ const PokemonContainer = () => {
     });
 
     // ***** PICK UP HERE NEXT TIME - NEED TO FLESH OUT WHAT HAPPENS WHEN INDIVIDUAL POKEMON ARE SELECTED
-    const onPokemonClick = ((url) => {
-        fetch(url)
-            .then(res => res.json())
-            .then(data => setSelectedPokemon(data));
-    });
+    const onPokemonClick = (pokemon) => {
+        setSelectedPokemon(pokemon)
+    };
 
 
     return (
         <>
             <TypeSelect pokemonTypeList={pokemonTypeList} onTypeSelect={onTypeSelect} getPokemon={getPokemon} />
             <PokemonList pokemonList={pokemonList} onPokemonClick={onPokemonClick} />
-            {/* { selectedPokemon ? <PokemonDetail pokemon={selectedPokemon} /> : null } */}
+            { selectedPokemon ? <PokemonDetail pokemon={selectedPokemon} onPokemonClick={onPokemonClick} /> : null }
         </>
     );
 

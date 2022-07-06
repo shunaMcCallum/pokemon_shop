@@ -98,6 +98,7 @@ function App() {
         <Route exact path="/" element={<HomeContainer />} />
         <Route exact path="/pokemon" element={<PokemonContainer pokemonList={pokemonList} selectedPokemon={selectedPokemon}
           pokemonTypeList={pokemonTypeList} onTypeSelect={onTypeSelect} getPokemon={getPokemon} setSelectedPokemon={setSelectedPokemon} />} />
+        {/* route added to render PokemonDetail from here but the actual link to it is in PokemonList */}
         <Route exact path="/pokemon/:id" element={<PokemonDetail pokemon={selectedPokemon} />} />
       </Routes>
     </Router>

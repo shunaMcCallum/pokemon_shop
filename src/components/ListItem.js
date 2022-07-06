@@ -1,5 +1,5 @@
 import React from 'react';
-import './ListItem.css'
+import './ListItem.css';
 
 const ListItem = ({ pokemon, onPokemonClick }) => {
 
@@ -9,7 +9,7 @@ const ListItem = ({ pokemon, onPokemonClick }) => {
 
   return (
     <div >
-      <div><img onClick={handleClick} src={pokemon.sprites.front_default} />
+      <div><img onClick={handleClick} src={pokemon.sprites.front_default} alt="pokemon" />
         <p>{pokemon.name}</p>
       </div>
     </div>

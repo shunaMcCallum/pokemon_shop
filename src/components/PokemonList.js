@@ -1,11 +1,17 @@
 import React from 'react';
 import ListItem from './ListItem';
 import './ListItem.css'
+import { Link } from "react-router-dom";
 
 const PokemonList = ({pokemonList, onPokemonClick}) => {
 
     const pokemonNodes = pokemonList.map((pokemon, index) => {
-        return <ListItem key={index} pokemon={pokemon} onPokemonClick={onPokemonClick} />
+        return (
+            // this links to the route set up in App.js to show the individual Pokemon items within the Pokemon route
+            <Link to={`/pokemon/${pokemon.id}`}>
+                <ListItem key={index} pokemon={pokemon} onPokemonClick={onPokemonClick} />
+            </Link>
+        )
     });
 
     return (

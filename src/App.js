@@ -11,17 +11,19 @@ function App() {
   const [pokemonList, setPokemonList] = useState([]);
   const [selectedPokemon, setSelectedPokemon] = useState({});
   const [pokemonTypeList, setPokemonTypeList] = useState([]);
+  let offset = 0;
 
   // page renders with full list of pokemon and drop-down menu which allows user to filter by Pokemon type
   useEffect(() => {
     getPokemon();
     getPokemonTypes();
+    window.addEventListener('scroll', handleScroll)
   }, []);
 
   // function returns a list of Pokemon objects - these contain a Pokemon NAME and URL which contains the detailed data on each Pokemon
   // getPokemonObject is run instead of setPokemonList here so that we can grab the detailed data and set THAT as pokemonList
   const getPokemon = (() => {
-    fetch('https://pokeapi.co/api/v2/pokemon/?limit=300')
+    fetch(`https://pokeapi.co/api/v2/pokemon/?limit=40&offset=${offset}`)
       .then(res => res.json())
       .then(data => {
         getPokemonObject(data.results)
@@ -41,10 +43,17 @@ function App() {
     let array = [];
     Promise.all(pokemonPromises)
       .then(data => {
-        array = data;
-        setPokemonList(array);
+        data.forEach(pokemon => array.push(pokemon));
+        setPokemonList(oldPokemon => [...oldPokemon, ...array]);
       })
+    offset += 40;
   });
+
+  const handleScroll = (event) => {
+    if (window.innerHeight + event.target.documentElement.scrollTop + 1 > event.target.documentElement.scrollHeight) {
+      getPokemon();
+    }
+  };
 
   // function uses a separate endpoint to grab an object which contains a list of objects containing the name and a url for each type
   // this list is stored under .results within the returned object

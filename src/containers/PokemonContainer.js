@@ -4,7 +4,7 @@ import PokemonDetail from '../components/PokemonDetail';
 import TypeSelect from '../components/TypeSelect';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-const PokemonContainer = ({pokemonList, selectedPokemon, pokemonTypeList, onTypeSelect, getPokemon, setSelectedPokemon}) => {
+const PokemonContainer = ({pokemonList, pokemonTypeList, onTypeSelect, getPokemon, setSelectedPokemon}) => {
 
     const onPokemonClick = (pokemon) => {
         setSelectedPokemon(pokemon)
